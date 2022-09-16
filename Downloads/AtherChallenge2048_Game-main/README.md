@@ -1,0 +1,4 @@
+# AtherChallenge2048_Game
+I thought in a way that this game as a two-player game the candidate who is playing a game shifting in his desired direction , the machine can place a tile into an empty location on the board. First we should add 2 random tiles, then we have to determine the next move and adding random tile is a random concept. First we have to find whether there is a chance for inserting a tile. If yes then determine which number to insert and where. Corresponding logic has been written. If at any stage there is no place to insert a tile then our game ends and we display the score. 
+I have created a tile class and board class from it. I have done a previous project called “Four connect game” . So , I am familiar with awt and javafx graphics.Then the methods left, right, up ,down are made and corresponding code for the logic is written. 
+
