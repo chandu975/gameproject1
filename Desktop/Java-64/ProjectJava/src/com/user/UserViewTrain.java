@@ -1,0 +1,60 @@
+package com.user;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.dao.TrainDao;
+import com.model.Train;
+
+
+@SuppressWarnings("serial")
+@WebServlet("/userviewtrainfwd")
+public class UserViewTrain extends HttpServlet {
+
+	private TrainDao trainDao = new TrainDao();
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		res.setContentType("text/html");
+		PrintWriter pw = res.getWriter();
+		try {
+			List<Train> trains = trainDao.getAllTrains();
+			if (trains != null && !trains.isEmpty()) {
+				RequestDispatcher rd = req.getRequestDispatcher("UserViewTrains.html");
+				rd.include(req, res);
+				pw.println("<div class='main'><p1 class='menu'>Running Trains</p1></div>");
+				pw.println("<div class='tab'><table><tr><th>Train Name</th><th>Train Number</th>"
+						+ "<th>From Station</th><th>To Station</th><th>Time</th><th>Seats Available</th><th>Fare (INR)</th><th>Booking</th></tr>");
+
+				for (Train train : trains) {
+					int hr = (int) (Math.random() * 24);
+					int min = (int) (Math.random() * 60);
+					String time = (hr < 10 ? ("0" + hr) : hr) + ":" + ((min < 10) ? "0" + min : min);
+					pw.println("" + "<tr> " + "" + "<td><a href='view?trainNo=" + train.getTr_no() + "&fromStn="
+							+ train.getFrom_stn() + "&toStn=" + train.getTo_stn() + "'>" + train.getTr_name()
+							+ "</a></td>" + "<td>" + train.getTr_no() + "</td>" + "<td>" + train.getFrom_stn() + "</td>"
+							+ "<td>" + train.getTo_stn() + "</td>" + "<td>" + time + "</td>" + "<td>" + train.getSeats()
+							+ "</td>" + "<td>" + train.getFare() + " RS</td>" + "<td><a href='booktrainbyref?trainNo="
+							+ train.getTr_no() + "&fromStn=" + train.getFrom_stn() + "&toStn=" + train.getTo_stn()
+							+ "'><div class='red'>Book Now</div></a></td></tr>");
+				}
+				pw.println("</table></div>");
+			} else {
+				RequestDispatcher rd = req.getRequestDispatcher("UserViewTrains.html");
+				rd.include(req, res);
+				pw.println("<div class='main'><p1 class='menu red'> No Running Trains</p1></div>");
+			}
+		} catch (Exception e) {
+			pw.println("<div class='main'><p1 class='menu red'> failed....</p1></div>");
+		}
+
+	}
+
+}

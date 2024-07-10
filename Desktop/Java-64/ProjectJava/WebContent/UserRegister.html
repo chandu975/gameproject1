@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LOGIN</title>
+<link rel="stylesheet" href="UserHome_Css.css">
+</head>
+<body>
+	<header>
+		<h1 class="hd">National Ticket Booking Spot</h1>
+		<div class="main">
+			<span class="menu"> <a href="UserLogin.html">Login as User</a>
+			</span> <span class="menu"> <a href="UserRegister.html">New User
+					Register</a>
+			</span> <span class="menu"> <a href="AdminLogin.html">Login as
+					Admin</a>
+			</span>
+		</div>
+	</header>
+	<table class="tab brown hd">
+		<tr>
+			<td>New User Registration</td>
+		</tr>
+	</table>
+
+	<table class="tab green">
+
+		<tr>
+			<td>
+				<form action="RegisterServlets" method="post">
+					<label for="first_name">Name</label> <input type="text"
+							name="name" class="form-control" id="first_name"
+							 required><br /> <br />
+					<label for="last_name">Email</label> <input type="email"
+							name="email" class="form-control" id="last_name" 
+							required><br />
+					<br /> <label for="last_name">Address</label>
+					<textarea name="address" class="form-control" id="last_name"
+						 required></textarea><br />
+					<br /> <label for="last_name">Mobile</label> <input type="number"
+							name="mobile" class="form-control" id="last_name"
+							 required><br />
+					<br /> <label for="last_name">Pin Code</label> <input type="number"
+							name="pincode" class="form-control" id="last_name"
+							 required><br />
+					<br /> <label for="last_name">Password</label> <input type="password"
+							name="password" class="form-control" id="last_name"
+							required><br />
+					<br /> <input type="submit"
+						value=" I AGREE FOR ALL TERMS & CONDITIONS ! REGISTER ME "
+						style="text-align: center">
+				</form>
+			</td>
+
+		</tr>
+	</table>
+
+
+</body>
+</html>
